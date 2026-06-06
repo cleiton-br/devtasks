@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+
+const tasksRoutes = require("./routes/tasks");
+
 const app = express();
 
 app.use(cors());
@@ -8,7 +11,10 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.json({ message: 'API DevTasks!' });
     });
-const port = 3001;
+    
+app.use('/tasks', tasksRoutes);
+
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
