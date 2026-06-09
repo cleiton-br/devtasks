@@ -12,7 +12,57 @@ const saveTasks = (tasks) => {
   fs.writeFileSync(filePath, JSON.stringify(tasks, null, 2));
 };
 
+const createTask = (title) => {
+    const tasks = getAllTasks();
+    const maxId = tasks.length ? Math.max(...tasks.map(task => task.id)) : 0;
+
+    const newTask = {
+        id: maxId + 1,
+        title,
+        completed: false
+    };
+
+    tasks.push(newTask);
+    saveTasks(tasks);
+    return newTask;
+};
+
+const updateTask = (id, data) => {
+    const tasks = getAllTasks();
+    const taskIndex = tasks.findIndex(task => task.id === id);
+
+    if (taskIndex === -1) {
+        return null;
+    }
+
+    if (data.title !== undefined) {
+        tasks[taskIndex].title = data.title;
+    }
+    if (data.completed !== undefined) {
+        tasks[taskIndex].completed = data.completed;
+    }
+
+    saveTasks(tasks);
+    return tasks[taskIndex];
+};
+
+const deleteTask = (id) => {
+    const tasks = getAllTasks();
+    const taskIndex = tasks.findIndex(task => task.id === id);
+
+    if (taskIndex === -1) {
+        return null;
+    }
+
+    const deletedTask = tasks.splice(taskIndex, 1)[0];
+    saveTasks(tasks);
+    return deletedTask;
+};
+
 module.exports = {
-  getAllTasks,
-  saveTasks
+    getAllTasks,
+    saveTasks,
+    createTask,
+    updateTask,
+    deleteTask
 };
