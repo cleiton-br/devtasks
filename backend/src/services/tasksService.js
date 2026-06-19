@@ -3,6 +3,8 @@ const path = require("path");
 
 const filePath = path.join(__dirname, "../data/tasks.json");
 
+const appError = require("../utils/appError");
+
 const getAllTasks = () => {
   const data = fs.readFileSync(filePath, "utf8");
   return JSON.parse(data);
@@ -32,7 +34,7 @@ const updateTask = (id, data) => {
     const taskIndex = tasks.findIndex(task => task.id === id);
 
     if (taskIndex === -1) {
-        return null;
+        throw appError("Tarefa não encontrada", 404);
     }
 
     if (data.title !== undefined) {
@@ -51,7 +53,7 @@ const deleteTask = (id) => {
     const taskIndex = tasks.findIndex(task => task.id === id);
 
     if (taskIndex === -1) {
-        return null;
+        throw appError("Tarefa não encontrada", 404);
     }
 
     const deletedTask = tasks.splice(taskIndex, 1)[0];
@@ -59,8 +61,21 @@ const deleteTask = (id) => {
     return deletedTask;
 };
 
+const getTaskById = (id) => {
+  const tasks = getAllTasks();
+
+  const task = tasks.find(task => task.id === id);
+
+  if (!task) {
+    throw appError("Tarefa não encontrada", 404);
+  }
+
+  return task;
+};
+
 module.exports = {
     getAllTasks,
+    getTaskById,
     saveTasks,
     createTask,
     updateTask,

@@ -13,31 +13,42 @@ const createTask = (req, res) => {
     res.status(201).json(newTask);
 };
 
-const updateTask = (req, res) => {
-    const id = Number(req.params.id);
+const updateTask = (req, res, next) => {
+  const id = Number(req.params.id);
 
-    const updateTask = tasksService.updateTask(id, req.body);
-
-    if (!updateTask) {
-        return res.status(404).json({ error: "Tarefa não encontrada" });
-    }
-
-    res.json(updateTask);
+  try {
+    const updatedTask = tasksService.updateTask(id, req.body);
+    res.json(updatedTask);
+  } catch (err) {
+    next(err);
+  }
 };
 
-const deleteTask = (req, res) => {
+const deleteTask = (req, res, next) => {
   const id = Number(req.params.id);
-  const deletedTask = tasksService.deleteTask(id);
 
-  if (!deletedTask) {
-    return res.status(404).json({ error: "Tarefa não encontrada" });
+  try {
+    const deletedTask = tasksService.deleteTask(id);
+    res.json({ message: "Tarefa deletada com sucesso", task: deletedTask });
+  } catch (err) {
+    next(err);
   }
+}; 
 
-  res.json({ message: "Tarefa deletada com sucesso", task: deletedTask });
+const getTaskById = (req, res, next) => {
+  const id = Number(req.params.id);
+
+  try {
+    const task = tasksService.getTaskById(id);
+    res.json(task);
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {
   getTasks,
+  getTaskById,
   createTask,
   updateTask,
   deleteTask
