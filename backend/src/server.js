@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+
+require("./config/database");
+
 const errorHandler = require("./middlewares/errorHandler");
 
 const tasksRoutes = require("./routes/tasks");
