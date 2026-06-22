@@ -1,11 +1,8 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
-require("./config/database");
-
-const errorHandler = require("./middlewares/errorHandler");
-
-const tasksRoutes = require("./routes/tasks");
+import errorHandler from "./middlewares/errorHandler.js";
+import tasksRoutes from "./routes/tasks.js";
 
 const app = express();
 app.use(cors());

@@ -1,11 +1,11 @@
-const express = require("express");
+import { Router }from "express";
 
-const { getTasks, getTaskById, createTask, updateTask, deleteTask } = require("../controllers/tasksController");
+import { getTasks, getTaskById, createTask, updateTask, deleteTask } from "../controllers/tasksController.js";
 
-const { validateTask } = require("../middlewares/taskValidation");
-const { validateTaskId } = require("../middlewares/taskIdValidation");
+import { validateTask } from "../middlewares/taskValidation.js";
+import { validateTaskId } from "../middlewares/taskIdValidation.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", getTasks);
 
@@ -33,4 +33,4 @@ router.delete(
   deleteTask
 );
 
-module.exports = router;
+export default router;

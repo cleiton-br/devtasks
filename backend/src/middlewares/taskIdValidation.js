@@ -1,15 +1,9 @@
-const validateTaskId = (req, res, next) => {
+export const validateTaskId = (req, res, next) => {
   const id = Number(req.params.id);
 
   if (!Number.isInteger(id) || id <= 0) {
-    return res.status(400).json({
-      error: "ID inválido"
-    });
+    return res.status(400).json({ error: 'ID inválido' });
   }
 
   next();
-};
-
-module.exports = { 
-  validateTaskId
 };

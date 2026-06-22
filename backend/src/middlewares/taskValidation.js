@@ -1,13 +1,9 @@
-const validateTask = (req, res, next) => {
-    const { title } = req.body;
+export const validateTask = (req, res, next) => {
+  const { title } = req.body;
 
-    if (!title || typeof title !== "string" || title.trim() === "") {
-        return res.status(400).json({ error: "O título da tarefa é obrigatório" });
-    }
+  if (!title || typeof title !== 'string' || title.trim().length === 0) {
+    return res.status(400).json({ error: 'O título da tarefa é obrigatório' });
+  }
 
-    next();
-};
-
-module.exports = {
-    validateTask
+  next();
 };
