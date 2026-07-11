@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useTasks } from '../contexts/TaskContext';
+import TaskEditModal from './TaskEditModal';
 
 const STATUS_MAP = {
   pending: 'Pendente',
@@ -8,6 +10,7 @@ const STATUS_MAP = {
 
 export default function TaskCard({ task }) {
   const { updateTask, deleteTask } = useTasks();
+  const [showModal, setShowModal] = useState(false);
 
   const moveTask = async (newStatus) => {
     await updateTask(task.id, { status: newStatus });
@@ -26,41 +29,50 @@ export default function TaskCard({ task }) {
   };
 
   return (
-    <div className="task-card">
-      <h3>{task.title}</h3>
-      <div className="task-meta">
-        <span className={`priority-badge priority-${task.priority || 'media'}`}>
-          {task.priority || 'média'}
-        </span>
-        {task.tags && task.tags.map((tag, index) => (
-          <span key={index} className="tag">{tag}</span>
-        ))}
-      </div>
-      <div className="move-buttons">
-        {prevStatus[task.status] && (
+    <>
+      <div className="task-card" onClick={() => setShowModal(true)}>
+        <h3>{task.title}</h3>
+        <div className="task-meta">
+          <span className={`priority-badge priority-${task.priority || 'media'}`}>
+            {task.priority || 'média'}
+          </span>
+          {task.tags && task.tags.map((tag, index) => (
+            <span key={index} className="tag">{tag}</span>
+          ))}
+        </div>
+        <div className="move-buttons" onClick={e => e.stopPropagation()}>
+          {prevStatus[task.status] && (
+            <button
+              className="btn-move"
+              onClick={() => moveTask(prevStatus[task.status])}
+            >
+              ← {STATUS_MAP[prevStatus[task.status]]}
+            </button>
+          )}
+          {nextStatus[task.status] && (
+            <button
+              className="btn-move"
+              onClick={() => moveTask(nextStatus[task.status])}
+            >
+              {STATUS_MAP[nextStatus[task.status]]} →
+            </button>
+          )}
           <button
             className="btn-move"
-            onClick={() => moveTask(prevStatus[task.status])}
+            onClick={() => deleteTask(task.id)}
+            style={{ background: '#da3633', color: '#fff' }}
           >
-            ← {STATUS_MAP[prevStatus[task.status]]}
+            🗑
           </button>
-        )}
-        {nextStatus[task.status] && (
-          <button
-            className="btn-move"
-            onClick={() => moveTask(nextStatus[task.status])}
-          >
-            {STATUS_MAP[nextStatus[task.status]]} →
-          </button>
-        )}
-        <button
-          className="btn-move"
-          onClick={() => deleteTask(task.id)}
-          style={{ background: '#da3633', color: '#fff' }}
-        >
-          🗑
-        </button>
+        </div>
       </div>
-    </div>
+      
+      {showModal && (
+        <TaskEditModal
+          task={task}
+          onClose={() => setShowModal(false)}
+        />
+      )}
+    </>
   );
 }
