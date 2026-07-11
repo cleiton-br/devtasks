@@ -339,3 +339,23 @@ body {
   border-color: #58a6ff;
   color: #58a6ff;
 }
+
+.confirm-modal {
+  max-width: 400px;
+}
+
+.confirm-message {
+  color: #c9d1d9;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.btn-danger {
+  background: #da3633;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #f85149;
+}
