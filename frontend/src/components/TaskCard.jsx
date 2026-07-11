@@ -16,6 +16,16 @@ export default function TaskCard({ task }) {
     await updateTask(task.id, { status: newStatus });
   };
 
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData('taskId', task.id.toString());
+    e.dataTransfer.effectAllowed = 'move';
+    e.currentTarget.classList.add('dragging');
+  };
+
+  const handleDragEnd = (e) => {
+    e.currentTarget.classList.remove('dragging');
+  };
+
   const nextStatus = {
     pending: 'in_progress',
     in_progress: 'done',
@@ -30,7 +40,13 @@ export default function TaskCard({ task }) {
 
   return (
     <>
-      <div className="task-card" onClick={() => setShowModal(true)}>
+      <div
+        className="task-card"
+        draggable="true"
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        onClick={() => setShowModal(true)}
+      >
         <h3>{task.title}</h3>
         <div className="task-meta">
           <span className={`priority-badge priority-${task.priority || 'media'}`}>
