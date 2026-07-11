@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTasks } from '../contexts/TaskContext';
 import TaskEditModal from './TaskEditModal';
+import ConfirmModal from './ConfirmModal';
 
 const STATUS_MAP = {
   pending: 'Pendente',
@@ -11,9 +12,15 @@ const STATUS_MAP = {
 export default function TaskCard({ task }) {
   const { updateTask, deleteTask } = useTasks();
   const [showModal, setShowModal] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const moveTask = async (newStatus) => {
     await updateTask(task.id, { status: newStatus });
+  };
+
+  const handleDelete = async () => {
+    await deleteTask(task.id);
+    setShowConfirm(false);
   };
 
   const handleDragStart = (e) => {
@@ -75,7 +82,7 @@ export default function TaskCard({ task }) {
           )}
           <button
             className="btn-move"
-            onClick={() => deleteTask(task.id)}
+            onClick={() => setShowConfirm(true)}
             style={{ background: '#da3633', color: '#fff' }}
           >
             🗑
@@ -87,6 +94,14 @@ export default function TaskCard({ task }) {
         <TaskEditModal
           task={task}
           onClose={() => setShowModal(false)}
+        />
+      )}
+
+      {showConfirm && (
+        <ConfirmModal
+          message={`Tem certeza que deseja excluir "${task.title}"?`}
+          onConfirm={handleDelete}
+          onCancel={() => setShowConfirm(false)}
         />
       )}
     </>
