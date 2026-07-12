@@ -1,38 +1,40 @@
 import pool from '../lib/db.js';
 
 export const taskModel = {
-  getAllTasks: async () => {
+  getAllTasks: async (userId) => {
     const result = await pool.query(
-      'SELECT * FROM tasks ORDER BY created_at DESC'
+      'SELECT * FROM tasks WHERE user_id = $1 ORDER BY created_at DESC',
+      [userId]
     );
     return result.rows;
   },
 
-  getTaskById: async (id) => {
+  getTaskById: async (id, userId) => {
     const result = await pool.query(
-      'SELECT * FROM tasks WHERE id = $1',
-      [id]
+      'SELECT * FROM tasks WHERE id = $1 AND user_id = $2',
+      [id, userId]
     );
     return result.rows[0] || null;
   },
 
-  createTask: async (taskData) => {
+  createTask: async (taskData, userId) => {
     const result = await pool.query(
-      `INSERT INTO tasks (title, status, priority, tags, completed)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO tasks (title, status, priority, tags, completed, user_id)
+       VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
       [
         taskData.title,
         taskData.status || 'pending',
         taskData.priority || 'media',
         taskData.tags || [],
-        taskData.completed || false
+        taskData.completed || false,
+        userId
       ]
     );
     return result.rows[0];
   },
 
-  updateTask: async (id, taskData) => {
+  updateTask: async (id, taskData, userId) => {
     const fields = [];
     const values = [];
     let paramCount = 1;
@@ -58,19 +60,19 @@ export const taskModel = {
       values.push(taskData.completed);
     }
 
-    values.push(id);
+    values.push(id, userId);
 
     const result = await pool.query(
-      `UPDATE tasks SET ${fields.join(', ')} WHERE id = $${paramCount} RETURNING *`,
+      `UPDATE tasks SET ${fields.join(', ')} WHERE id = $${paramCount++} AND user_id = $${paramCount} RETURNING *`,
       values
     );
     return result.rows[0];
   },
 
-  deleteTask: async (id) => {
+  deleteTask: async (id, userId) => {
     const result = await pool.query(
-      'DELETE FROM tasks WHERE id = $1 RETURNING *',
-      [id]
+      'DELETE FROM tasks WHERE id = $1 AND user_id = $2 RETURNING *',
+      [id, userId]
     );
     return result.rows[0];
   }
