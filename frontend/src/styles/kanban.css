@@ -1,0 +1,147 @@
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.kanban-column {
+  background: #161b22;
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 400px;
+  border: 1px solid #30363d;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #30363d;
+}
+
+.column-header h2 {
+  font-size: 1.1rem;
+  color: #58a6ff;
+}
+
+.task-count {
+  background: #30363d;
+  color: #8b949e;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-card {
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.task-card:hover {
+  border-color: #58a6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
+}
+
+.task-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #f0f6fc;
+}
+
+.task-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.priority-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.priority-alta {
+  background: #da3633;
+  color: #fff;
+}
+
+.priority-media {
+  background: #d29922;
+  color: #fff;
+}
+
+.priority-baixa {
+  background: #238636;
+  color: #fff;
+}
+
+.tag {
+  background: #30363d;
+  color: #8b949e;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.task-form {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.task-form input,
+.task-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 0.95rem;
+}
+
+.task-form input:focus,
+.task-form select:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+.move-buttons {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.btn-move {
+  padding: 4px 8px;
+  background: #30363d;
+  color: #8b949e;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+.btn-move:hover {
+  background: #58a6ff;
+  color: #fff;
+}
