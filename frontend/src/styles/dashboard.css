@@ -1,0 +1,54 @@
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard h2 {
+  color: #58a6ff;
+  margin-bottom: 20px;
+}
+
+.metrics-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.metric-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #58a6ff;
+}
+
+.metric-label {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chart-container {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.chart-container h3 {
+  color: #c9d1d9;
+  margin-bottom: 16px;
+  text-align: center;
+}

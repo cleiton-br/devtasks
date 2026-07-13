@@ -6,7 +6,16 @@ import Kanban from './pages/Kanban';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import './App.css';
+import './styles/global.css';
+import './styles/header.css';
+import './styles/kanban.css';
+import './styles/modal.css';
+import './styles/dashboard.css';
+import './styles/search.css';
+import './styles/auth.css';
+import './styles/toast.css';
+import './styles/dragdrop.css';
+import './styles/responsive.css';
 
 function AppContent() {
   const { user, loading, logout } = useAuth();
