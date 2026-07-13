@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #8b949e;
+  font-size: 1.2rem;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #238636;
+  color: #fff;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: #2ea043;
+}
+
+.btn-secondary {
+  background: #30363d;
+  color: #c9d1d9;
+}
+
+.btn-secondary:hover {
+  background: #484f58;
+}
+
+.btn-danger {
+  background: #da3633;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #f85149;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #8b949e;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 0.95rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+.input-error {
+  border-color: #da3633 !important;
+}
+
+.field-error {
+  display: block;
+  color: #da3633;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.field-hint {
+  display: block;
+  color: #484f58;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
