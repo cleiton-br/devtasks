@@ -6,11 +6,11 @@
 }
 
 .kanban-column {
-  background: #161b22;
+  background: var(--bg-secondary);
   border-radius: 12px;
   padding: 16px;
   min-height: 400px;
-  border: 1px solid #30363d;
+  border: 1px solid var(--border-color);
 }
 
 .column-header {
@@ -19,17 +19,17 @@
   align-items: center;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #30363d;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .column-header h2 {
   font-size: 1.1rem;
-  color: #58a6ff;
+  color: var(--accent);
 }
 
 .task-count {
-  background: #30363d;
-  color: #8b949e;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
   padding: 2px 10px;
   border-radius: 12px;
   font-size: 0.85rem;
@@ -42,8 +42,8 @@
 }
 
 .task-card {
-  background: #21262d;
-  border: 1px solid #30363d;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 12px;
   cursor: pointer;
@@ -51,7 +51,7 @@
 }
 
 .task-card:hover {
-  border-color: #58a6ff;
+  border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
 }
@@ -59,7 +59,7 @@
 .task-card h3 {
   font-size: 0.95rem;
   margin-bottom: 8px;
-  color: #f0f6fc;
+  color: var(--text-primary);
 }
 
 .task-meta {
@@ -76,31 +76,31 @@
 }
 
 .priority-alta {
-  background: #da3633;
+  background: var(--danger);
   color: #fff;
 }
 
 .priority-media {
-  background: #d29922;
+  background: var(--warning);
   color: #fff;
 }
 
 .priority-baixa {
-  background: #238636;
+  background: var(--success);
   color: #fff;
 }
 
 .tag {
-  background: #30363d;
-  color: #8b949e;
+  background: var(--hover);
+  color: var(--text-secondary);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.75rem;
 }
 
 .task-form {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
@@ -111,17 +111,17 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  background: #0d1117;
-  border: 1px solid #30363d;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  color: #c9d1d9;
+  color: var(--text-primary);
   font-size: 0.95rem;
 }
 
 .task-form input:focus,
 .task-form select:focus {
   outline: none;
-  border-color: #58a6ff;
+  border-color: var(--accent);
 }
 
 .move-buttons {
@@ -132,8 +132,8 @@
 
 .btn-move {
   padding: 4px 8px;
-  background: #30363d;
-  color: #8b949e;
+  background: var(--hover);
+  color: var(--text-secondary);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -142,6 +142,6 @@
 }
 
 .btn-move:hover {
-  background: #58a6ff;
+  background: var(--accent);
   color: #fff;
 }

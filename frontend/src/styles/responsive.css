@@ -24,6 +24,10 @@
 
 /* RESPONSIVO para Celulares (até 640px) */
 @media (max-width: 640px) {
+  .theme-toggle {
+    position: static;
+  }
+
   .app {
     padding: 10px;
   }

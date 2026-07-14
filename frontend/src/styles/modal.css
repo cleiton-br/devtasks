@@ -13,8 +13,8 @@
 }
 
 .modal-content {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 24px;
   width: 90%;
@@ -28,18 +28,18 @@
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #30363d;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .modal-header h2 {
-  color: #58a6ff;
+  color: var(--accent);
   font-size: 1.3rem;
 }
 
 .modal-close {
   background: none;
   border: none;
-  color: #8b949e;
+  color: var(--text-secondary);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 4px 8px;
@@ -47,8 +47,8 @@
 }
 
 .modal-close:hover {
-  background: #30363d;
-  color: #fff;
+  background: var(--hover);
+  color: var(--text-primary);
 }
 
 .modal-actions {
@@ -63,7 +63,7 @@
 }
 
 .confirm-message {
-  color: #c9d1d9;
+  color: var(--text-primary);
   font-size: 1rem;
   margin-bottom: 8px;
   line-height: 1.5;
