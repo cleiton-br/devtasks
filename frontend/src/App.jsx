@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { TaskProvider } from './contexts/TaskContext';
 import { ToastProvider, useToast } from './contexts/ToastContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import Kanban from './pages/Kanban';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -20,6 +21,7 @@ import './styles/responsive.css';
 function AppContent() {
   const { user, loading, logout } = useAuth();
   const { addToast } = useToast();
+  const { theme, toggleTheme } = useTheme();
   const [currentPage, setCurrentPage] = useState('kanban');
   const [authPage, setAuthPage] = useState('login');
   const prevUser = useRef(user);
@@ -51,6 +53,9 @@ function AppContent() {
       <div className="app">
         <header className="app-header">
           <div className="header-top">
+            <button className="theme-toggle" onClick={toggleTheme}>
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
             <div className="user-menu">
               <span className="user-name">👤 {user.name}</span>
               <button className="btn-logout" onClick={handleLogout}>Sair</button>
@@ -81,11 +86,13 @@ function AppContent() {
 
 function App() {
   return (
-    <ToastProvider>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
-    </ToastProvider>
+    <ThemeProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 
