@@ -22,15 +22,13 @@
 }
 
 .toast-success {
-  background: #238636;
+  background: var(--success);
   color: #fff;
-  border: 1px solid #2ea043;
 }
 
 .toast-error {
-  background: #da3633;
+  background: var(--danger);
   color: #fff;
-  border: 1px solid #f85149;
 }
 
 .toast-close {

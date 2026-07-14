@@ -5,22 +5,22 @@
 }
 
 .kanban-column.drag-over {
-  background: #1a2332;
-  border-color: #58a6ff;
+  background: var(--bg-secondary);
+  border-color: var(--accent);
   box-shadow: inset 0 0 20px rgba(88, 166, 255, 0.1);
   transition: all 0.2s ease;
 }
 
 .empty-column {
-  color: #484f58;
+  color: var(--text-muted);
   text-align: center;
   padding: 20px;
-  border: 2px dashed #30363d;
+  border: 2px dashed var(--border-color);
   border-radius: 8px;
   transition: all 0.2s;
 }
 
 .kanban-column.drag-over .empty-column {
-  border-color: #58a6ff;
-  color: #58a6ff;
+  border-color: var(--accent);
+  color: var(--accent);
 }

@@ -3,7 +3,7 @@
 }
 
 .dashboard h2 {
-  color: #58a6ff;
+  color: var(--accent);
   margin-bottom: 20px;
 }
 
@@ -15,8 +15,8 @@
 }
 
 .metric-card {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -25,11 +25,11 @@
 .metric-value {
   font-size: 2rem;
   font-weight: bold;
-  color: #58a6ff;
+  color: var(--accent);
 }
 
 .metric-label {
-  color: #8b949e;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin-top: 4px;
 }
@@ -41,14 +41,14 @@
 }
 
 .chart-container {
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 20px;
 }
 
 .chart-container h3 {
-  color: #c9d1d9;
+  color: var(--text-primary);
   margin-bottom: 16px;
   text-align: center;
 }
