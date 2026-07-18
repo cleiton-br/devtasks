@@ -1,8 +1,6 @@
-# 🚀 DevTasks
+# DevTasks
 
-Gerenciador de tarefas para desenvolvedores com Kanban Board e Dashboard de métricas.
-
----
+Gerenciador de tarefas com Kanban Board e Dashboard de métricas.
 
 ## 📸 Screenshots
 
@@ -12,8 +10,6 @@ Gerenciador de tarefas para desenvolvedores com Kanban Board e Dashboard de mét
 ### Dashboard
 ![Dashboard](docs/tela_dashboard.png)
 
----
-
 ## ✨ Funcionalidades
 
 - Criar, editar e excluir tarefas
@@ -21,8 +17,11 @@ Gerenciador de tarefas para desenvolvedores com Kanban Board e Dashboard de mét
 - Definir Prioridade (Alta / Média / Baixa)
 - Tags personalizadas
 - Dashboard com métricas e gráficos
-
----
+- Busca por texto e filtros (prioridade, status, tag)
+- Ordenação por data, prioridade e título
+- Tarefas isoladas por usuário
+- Tema claro/escuro
+- Layout responsivo (desktop, tablet, mobile)
 
 ## 🛠️ Stack
 
@@ -42,10 +41,52 @@ Gerenciador de tarefas para desenvolvedores com Kanban Board e Dashboard de mét
 | Express | 5 |
 | PostgreSQL | 16 |
 | pg (driver) | 8 |
+| bcryptjs | 3 |
+| jsonwebtoken | 9 |
 
----
+### DevOps
+| Tecnologia |
+|------------|
+| Docker |
+| Docker Compose |
 
 ## 🚀 Como rodar o projeto
+
+### Com Docker (recomendado)
+
+### Pré-requisitos
+
+- [Docker](https://docs.docker.com/get-docker/) instalado na máquina
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/cleiton-br/devtasks.git
+cd devtasks
+```
+
+### 2. Subir todos os serviços Docker
+
+```bash
+docker compose up --build
+```
+### 3. Acesso
+
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3001
+
+Usuário padrão para testes:
+
+Email: test@devtasks.com
+Senha: 123456
+
+### 3. Parar os serviços Docker
+
+```bash
+docker compose down
+```
+
+### Sem Docker (modo tradicional)
 
 ### Pré-requisitos
 
@@ -63,20 +104,29 @@ cd devtasks
 
 ```bash
 cd backend
-cp .env.example .env # configure as credenciais do banco
+cp .env.example .env  # configure as credenciais
 npm install
-npm start # rode em http://localhost:3001
+npm start
 ```
 ### 3. Frontend
 
 ```bash
 cd frontend
 npm install
-npm run dev # roda em http://localhost:5173
+npm run dev
 ```
+
 ### 4. Banco de dados
 
 ```bash
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
@@ -85,9 +135,15 @@ CREATE TABLE tasks (
   tags TEXT[] DEFAULT ARRAY[]::TEXT[],
   completed BOOLEAN DEFAULT false,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INTEGER REFERENCES users(id)
 );
 ```
+
+### 5. Acesso
+
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3001
 
 ## 📝 Licença
 
