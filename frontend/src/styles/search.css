@@ -99,3 +99,37 @@
   margin-bottom: 16px;
   font-size: 0.9rem;
 }
+
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  justify-content: flex-end;
+}
+
+.sort-bar label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.sort-bar select {
+  padding: 8px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.sort-bar select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.toolbar {
+  margin-bottom: 20px;
+}
